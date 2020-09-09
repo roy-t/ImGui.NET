@@ -1,5 +1,5 @@
 using System;
-using System.Numerics;
+using Microsoft.Xna.Framework;
 using System.Runtime.InteropServices;
 
 namespace ImGuiNET

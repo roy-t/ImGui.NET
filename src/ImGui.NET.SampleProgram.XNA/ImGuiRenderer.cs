@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace ImGuiNET.SampleProgram.XNA
 {
@@ -195,17 +195,9 @@ namespace ImGuiNET.SampleProgram.XNA
 
             var io = ImGui.GetIO();
 
-            // MonoGame-specific //////////////////////
-            var offset = .5f;
-            ///////////////////////////////////////////
-
-            // FNA-specific ///////////////////////////
-            //var offset = 0f;
-            ///////////////////////////////////////////
-
             _effect.World = Matrix.Identity;
             _effect.View = Matrix.Identity;
-            _effect.Projection = Matrix.CreateOrthographicOffCenter(offset, io.DisplaySize.X + offset, io.DisplaySize.Y + offset, offset, -1f, 1f);
+            _effect.Projection = Matrix.CreateOrthographicOffCenter(0, io.DisplaySize.X, io.DisplaySize.Y, 0, -1f, 1f);
             _effect.TextureEnabled = true;
             _effect.Texture = texture;
             _effect.VertexColorEnabled = true;
@@ -233,10 +225,10 @@ namespace ImGuiNET.SampleProgram.XNA
             io.KeyAlt = keyboard.IsKeyDown(Keys.LeftAlt) || keyboard.IsKeyDown(Keys.RightAlt);
             io.KeySuper = keyboard.IsKeyDown(Keys.LeftWindows) || keyboard.IsKeyDown(Keys.RightWindows);
 
-            io.DisplaySize = new System.Numerics.Vector2(_graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight);
-            io.DisplayFramebufferScale = new System.Numerics.Vector2(1f, 1f);
+            io.DisplaySize = new Vector2(_graphicsDevice.PresentationParameters.BackBufferWidth, _graphicsDevice.PresentationParameters.BackBufferHeight);
+            io.DisplayFramebufferScale = new Vector2(1f, 1f);
 
-            io.MousePos = new System.Numerics.Vector2(mouse.X, mouse.Y);
+            io.MousePos = new Vector2(mouse.X, mouse.Y);
 
             io.MouseDown[0] = mouse.LeftButton == ButtonState.Pressed;
             io.MouseDown[1] = mouse.RightButton == ButtonState.Pressed;

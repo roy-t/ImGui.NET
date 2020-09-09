@@ -1,13 +1,27 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PublishReadyToRun>false</PublishReadyToRun>
+        <TieredCompilation>false</TieredCompilation>
+        <UseWindowsForms>true</UseWindowsForms>
+    </PropertyGroup>
+    
     <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AssemblyName>ImGuiNET.SampleProgram.XNA</AssemblyName>
-        <RootNamespace>ImGuiNET.SampleProgram.XNA</RootNamespace>
-        <TargetFramework>net472</TargetFramework>
-        <OutputType>Exe</OutputType>
+        <RootNamespace>ImGuiNET.SampleProgram.XNA</RootNamespace>        
     </PropertyGroup>
+
+    <ItemGroup>
+        <TrimmerRootAssembly Include="Microsoft.Xna.Framework.Content.ContentTypeReader" Visible="false" />
+    </ItemGroup>
+
+    <ItemGroup>        
+        <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />        
+    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\ImGui.NET\ImGui.NET.csproj" />
@@ -17,10 +31,6 @@
         <Content Include="$(RepositoryRootDirectory)/deps/cimgui/win-x64/cimgui.dll" CopyToOutputDirectory="PreserveNewest" />
         <Content Include="$(RepositoryRootDirectory)/deps/cimgui/osx-x64/cimgui.dylib" CopyToOutputDirectory="PreserveNewest" Link="lib%(Filename)%(Extension)" />
         <Content Include="$(RepositoryRootDirectory)/deps/cimgui/linux-x64/cimgui.so" CopyToOutputDirectory="PreserveNewest" Link="lib%(Filename)%(Extension)" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.7.0.1708" />
     </ItemGroup>
 
 </Project>

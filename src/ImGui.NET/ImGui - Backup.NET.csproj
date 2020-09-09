@@ -8,6 +8,7 @@
     <AssemblyVersion>1.78.0</AssemblyVersion>
     <Authors>Eric Mellino</Authors>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>portable</DebugType>
     <AssemblyName>ImGui.NET</AssemblyName>
     <PackageId>ImGui.NET</PackageId>
     <PackagePrereleaseIdentifier></PackagePrereleaseIdentifier>
@@ -17,7 +18,6 @@
     <DocumentationFile Condition="'$(Configuration)' == 'Release'">$(OutputPath)\ImGui.NET.xml</DocumentationFile>
     <RootNamespace>ImGuiNET</RootNamespace>
   </PropertyGroup>
-  
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.4.0" />

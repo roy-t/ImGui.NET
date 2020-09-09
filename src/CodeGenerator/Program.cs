@@ -1,13 +1,9 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace CodeGenerator
 {
@@ -24,10 +20,10 @@ namespace CodeGenerator
             {
                 outputPath = AppContext.BaseDirectory;
             }
-            
+
             var defs = new ImguiDefinitions();
             defs.LoadFrom(AppContext.BaseDirectory);
-            
+
             Console.WriteLine($"Outputting generated code files to {outputPath}.");
 
             foreach (EnumDefinition ed in defs.Enums)
@@ -58,7 +54,7 @@ namespace CodeGenerator
                 using (CSharpCodeWriter writer = new CSharpCodeWriter(Path.Combine(outputPath, td.Name + ".gen.cs")))
                 {
                     writer.Using("System");
-                    writer.Using("System.Numerics");
+                    writer.Using("Microsoft.Xna.Framework");
                     writer.Using("System.Runtime.CompilerServices");
                     writer.Using("System.Text");
                     writer.WriteLine(string.Empty);
@@ -222,7 +218,7 @@ namespace CodeGenerator
             using (CSharpCodeWriter writer = new CSharpCodeWriter(Path.Combine(outputPath, "ImGuiNative.gen.cs")))
             {
                 writer.Using("System");
-                writer.Using("System.Numerics");
+                writer.Using("Microsoft.Xna.Framework");
                 writer.Using("System.Runtime.InteropServices");
                 writer.WriteLine(string.Empty);
                 writer.PushBlock("namespace ImGuiNET");
@@ -290,7 +286,7 @@ namespace CodeGenerator
             using (CSharpCodeWriter writer = new CSharpCodeWriter(Path.Combine(outputPath, "ImGui.gen.cs")))
             {
                 writer.Using("System");
-                writer.Using("System.Numerics");
+                writer.Using("Microsoft.Xna.Framework");
                 writer.Using("System.Runtime.InteropServices");
                 writer.Using("System.Text");
                 writer.WriteLine(string.Empty);
@@ -412,7 +408,7 @@ namespace CodeGenerator
                 if (tr.Name == "self")
                 {
                     selfIndex = i;
-                    continue; 
+                    continue;
                 }
                 if (tr.Name == "...") { continue; }
 
@@ -668,7 +664,7 @@ namespace CodeGenerator
 
             if (overrideRet != null)
                 writer.WriteLine("return __retval;");
-            
+
             for (int i = 0; i < marshalledParameters.Length; i++)
             {
                 MarshalledParameter mp = marshalledParameters[i];

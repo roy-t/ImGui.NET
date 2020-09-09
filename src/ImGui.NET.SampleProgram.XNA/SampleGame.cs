@@ -1,8 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.IO;
-using Num = System.Numerics;
 
 namespace ImGuiNET.SampleProgram.XNA
 {
@@ -39,15 +37,15 @@ namespace ImGuiNET.SampleProgram.XNA
         {
             // Texture loading example
 
-			// First, load the texture as a Texture2D (can also be done using the XNA/FNA content pipeline)
-			_xnaTexture = CreateTexture(GraphicsDevice, 300, 150, pixel =>
-			{
-				var red = (pixel % 300) / 2;
-				return new Color(red, 1, 1);
-			});
+            // First, load the texture as a Texture2D (can also be done using the XNA/FNA content pipeline)
+            _xnaTexture = CreateTexture(GraphicsDevice, 300, 150, pixel =>
+            {
+                var red = (pixel % 300) / 2;
+                return new Color(red, 1, 1);
+            });
 
-			// Then, bind it to an ImGui-friendly pointer, that we can use during regular ImGui.** calls (see below)
-			_imGuiTexture = _imGuiRenderer.BindTexture(_xnaTexture);
+            // Then, bind it to an ImGui-friendly pointer, that we can use during regular ImGui.** calls (see below)
+            _imGuiTexture = _imGuiRenderer.BindTexture(_xnaTexture);
 
             base.LoadContent();
         }
@@ -73,7 +71,7 @@ namespace ImGuiNET.SampleProgram.XNA
 
         private bool show_test_window = false;
         private bool show_another_window = false;
-        private Num.Vector3 clear_color = new Num.Vector3(114f / 255f, 144f / 255f, 154f / 255f);
+        private Vector3 clear_color = new Vector3(114f / 255f, 144f / 255f, 154f / 255f);
         private byte[] _textBuffer = new byte[100];
 
         protected virtual void ImGuiLayout()
@@ -91,13 +89,13 @@ namespace ImGuiNET.SampleProgram.XNA
                 ImGui.InputText("Text input", _textBuffer, 100);
 
                 ImGui.Text("Texture sample");
-                ImGui.Image(_imGuiTexture, new Num.Vector2(300, 150), Num.Vector2.Zero, Num.Vector2.One, Num.Vector4.One, Num.Vector4.One); // Here, the previously loaded texture is used
+                ImGui.Image(_imGuiTexture, new Vector2(300, 150), Vector2.Zero, Vector2.One, Vector4.One, Vector4.One); // Here, the previously loaded texture is used
             }
 
             // 2. Show another simple window, this time using an explicit Begin/End pair
             if (show_another_window)
             {
-                ImGui.SetNextWindowSize(new Num.Vector2(200, 100), ImGuiCond.FirstUseEver);
+                ImGui.SetNextWindowSize(new Vector2(200, 100), ImGuiCond.FirstUseEver);
                 ImGui.Begin("Another Window", ref show_another_window);
                 ImGui.Text("Hello");
                 ImGui.End();
@@ -106,28 +104,28 @@ namespace ImGuiNET.SampleProgram.XNA
             // 3. Show the ImGui test window. Most of the sample code is in ImGui.ShowTestWindow()
             if (show_test_window)
             {
-                ImGui.SetNextWindowPos(new Num.Vector2(650, 20), ImGuiCond.FirstUseEver);
+                ImGui.SetNextWindowPos(new Vector2(650, 20), ImGuiCond.FirstUseEver);
                 ImGui.ShowDemoWindow(ref show_test_window);
             }
         }
 
-		public static Texture2D CreateTexture(GraphicsDevice device, int width, int height, Func<int, Color> paint)
-		{
-			//initialize a texture
-			var texture = new Texture2D(device, width, height);
+        public static Texture2D CreateTexture(GraphicsDevice device, int width, int height, Func<int, Color> paint)
+        {
+            //initialize a texture
+            var texture = new Texture2D(device, width, height);
 
-			//the array holds the color for each pixel in the texture
-			Color[] data = new Color[width * height];
-			for(var pixel = 0; pixel < data.Length; pixel++)
-			{
-				//the function applies the color according to the specified pixel
-				data[pixel] = paint( pixel );
-			}
+            //the array holds the color for each pixel in the texture
+            Color[] data = new Color[width * height];
+            for (var pixel = 0; pixel < data.Length; pixel++)
+            {
+                //the function applies the color according to the specified pixel
+                data[pixel] = paint(pixel);
+            }
 
-			//set the color
-			texture.SetData( data );
+            //set the color
+            texture.SetData(data);
 
-			return texture;
-		}
-	}
+            return texture;
+        }
+    }
 }

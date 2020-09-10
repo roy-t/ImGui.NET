@@ -16,6 +16,7 @@
     <PackageProjectUrl>https://github.com/mellinoe/imgui.net</PackageProjectUrl>
     <DocumentationFile Condition="'$(Configuration)' == 'Release'">$(OutputPath)\ImGui.NET.xml</DocumentationFile>
     <RootNamespace>ImGuiNET</RootNamespace>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
   
   <ItemGroup>

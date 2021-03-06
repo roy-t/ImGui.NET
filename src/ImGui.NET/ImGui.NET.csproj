@@ -18,10 +18,6 @@
     <RootNamespace>ImGuiNET</RootNamespace>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\deps\cimgui\win-x86\cimgui.dll">
       <PackagePath>runtimes/win-x86/native</PackagePath>
@@ -46,5 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Generated\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\MonoGame\MonoGame.Framework\MonoGame.Framework.WindowsDX.csproj" />
   </ItemGroup>
 </Project>
